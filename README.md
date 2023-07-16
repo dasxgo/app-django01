@@ -1,2 +1,2 @@
-# encuestasapp
-Aplicación de encuestas con Django
+# app django
+app de encuestas usando Django
