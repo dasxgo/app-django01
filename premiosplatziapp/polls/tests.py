@@ -3,6 +3,7 @@ import datetime
 
 from django.test import TestCase
 from django.utils import timezone
+from django.urls import reverse
 
 from .models import Question
 
@@ -29,4 +30,12 @@ class QuestionModelTest(TestCase):
         """was_published_recently() must return True for questions whose pub_date is actual"""
         time = timezone.now()
         present_question = Question(question_text="¿Quien es el mejor Course Direct de Platzi?",pub_date=time)
-        self.assertIs(present_question.was_published_recently(),True)                                
+        self.assertIs(present_question.was_published_recently(),True)   
+
+class QuestionIndexViews(TestCase):
+    def test_no_question(self):
+        '''if no question exist, an appropieta message is displated'''
+        response = self.client.get(reverse('polls:index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'No polls are available') 
+        self.assertQuerysetEqual(response.context['latest_question_list'],[])                           
