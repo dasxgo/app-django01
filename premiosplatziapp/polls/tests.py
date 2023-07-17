@@ -55,7 +55,7 @@ class QuestionIndexViews(TestCase):
         ''' Question wiht a pub_date in the past are displayed on the index page'''
         question = create_question("Past question", days=-10)
         response = self.client.get(reverse("polls:index"))
-        self.assertQuerysetEqual(response.context["latest_question_list"],[question])
+        self.assertQuerysetEqual(response.context["latest_question_list"],[question])``
                 
     def test_future_question_and_past_question(self):
         ''' Even if both and future question exist, only past question are displayed'''
