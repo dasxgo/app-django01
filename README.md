@@ -1,2 +1,2 @@
-# Django WEB
+# Overview
 Surveys using django
